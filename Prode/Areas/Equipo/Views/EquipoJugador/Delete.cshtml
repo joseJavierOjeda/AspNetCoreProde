@@ -1,0 +1,45 @@
+﻿@model Prode.Models.EquipoJugador
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EquipoJugador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVigenciaDesde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaVigenciaDesde)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVigenciaHasta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaVigenciaHasta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.Codigo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jugador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jugador.Apellido)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EquipoJugadorId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
