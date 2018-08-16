@@ -15,24 +15,23 @@ namespace Prode.Areas.Equipo.Controllers
     public class PartidoController : Controller
     {
         #region Atributos
-        private readonly IJugadorNegocio jugadorNegocio;
+        private readonly IPartidoNegocio partidoNegocio;
         private readonly ProdeContext _context;
         #endregion
 
         #region Constructor
-        public PartidoController(IJugadorNegocio jugadorNegocio,
+        public PartidoController(IPartidoNegocio partidoNegocio,
             ProdeContext context)
         {
-            this.jugadorNegocio = jugadorNegocio;
+            this.partidoNegocio = partidoNegocio;
             _context = context;
         }
         #endregion
         
-
         // GET: Equipo/Partido
         public async Task<IActionResult> Index()
         {
-            return View(await jugadorNegocio.BuscarPartido(null,null,null,null));
+            return View(await partidoNegocio.BuscarPartido(null,null,null,null));
         }
 
         // GET: Equipo/Partido/Details/5
@@ -43,14 +42,16 @@ namespace Prode.Areas.Equipo.Controllers
                 return NotFound();
             }
 
-            var Partido = await jugadorNegocio.GetJugadorPorIdAsync(id.Value);
+            //var Partido = await partidoNegocio.GetJugadorPorIdAsync(id.Value);
 
-            if (Partido == null)
+            var partido = new Partido();
+
+            if (partido == null)
             {
                 return NotFound();
             }
 
-            return View(Partido);
+            return View(partido);
         }
 
         // GET: Equipo/Partido/Create

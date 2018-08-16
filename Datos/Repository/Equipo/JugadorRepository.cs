@@ -34,17 +34,7 @@ namespace Datos.Repository.Equipo
             return await context.Jugador
                 .SingleOrDefaultAsync(m => m.JugadorId == id);
         }
-
-        public async Task<IList<PartidoCompleto>> BuscarPartido(string palabrasABuscar, 
-            int? faseId, int? torneoId, int? temporadaId)
-        {
-
-            var resultado = await context.PartidoCompleto
-                .FromSql($"exec [partido].[Partido_Buscar] {0},{1},{2},{3}",
-                palabrasABuscar,faseId,torneoId,temporadaId).ToListAsync();
-
-            return resultado;
-        }
+        
         #endregion
 
     }

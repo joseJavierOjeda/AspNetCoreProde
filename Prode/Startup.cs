@@ -29,11 +29,10 @@ namespace Prode
             var connection = @"Server=.;Database=Prode;Trusted_Connection=True;";
             services.AddDbContext<ProdeContext>(options => options.UseSqlServer(connection));
 
-            services.AddTransient<IJugadorNegocio, JugadorNegocio>();
-
-            services.AddTransient<IJugadorRepository, JugadorRepository>();
-
+            AgregarServicios(services);
+            
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,10 +54,21 @@ namespace Prode
             {
                 routes.MapRoute(
                   name: "areas",
-                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  template: "{area:exists?}/{controller=Home}/{action=Index}/{id?}"
                 );
             });
 
+        }
+
+        public void AgregarServicios(IServiceCollection services)
+        {
+            services.AddTransient<IJugadorNegocio, JugadorNegocio>();
+
+            services.AddTransient<IJugadorRepository, JugadorRepository>();
+
+            services.AddTransient<IPartidoNegocio, PartidoNegocio>();
+
+            services.AddTransient<IPartidoRepository, PartidoRepository>();
         }
 
     }

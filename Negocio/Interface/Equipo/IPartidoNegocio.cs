@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Negocio.Interface.Equipo
 {
-    public interface IJugadorNegocio
+    public interface IPartidoNegocio
     {
-        Task<IList<Jugador>> GetJugadoresAsync();
-        Task<Jugador> GetJugadorPorIdAsync(int id);
+        Task<IList<PartidoCompleto>> BuscarPartido(string palabrasABuscar, int? faseId, int? torneoId, int? temporadaId);
     }
 }

@@ -8,32 +8,26 @@ using System.Threading.Tasks;
 
 namespace Negocio.Equipo
 {
-    public class JugadorNegocio : IJugadorNegocio
+    public class PartidoNegocio : IPartidoNegocio
     {
         #region Atributos
-        private readonly IJugadorRepository repository;
+        private readonly IPartidoRepository repository;
 
         #endregion
 
         #region Constructor
-        public JugadorNegocio(IJugadorRepository repository)
+        public PartidoNegocio(IPartidoRepository repository)
         {
             this.repository = repository;
         }
-        
         #endregion
 
         #region Metodos
-        public Task<IList<Jugador>> GetJugadoresAsync()
+        public Task<IList<PartidoCompleto>> BuscarPartido(string palabrasABuscar, 
+            int? faseId, int? torneoId, int? temporadaId)
         {
-            return repository.GetJugadoresAsync();
+            return repository.BuscarPartido(palabrasABuscar, faseId, torneoId, temporadaId);
         }
-
-        public Task<Jugador> GetJugadorPorIdAsync(int id)
-        {
-            return repository.GetJugadorPorIdAsync(id);
-        }
-
         #endregion
         
     }
