@@ -10,5 +10,6 @@ namespace Negocio.Interface.Equipo
     {
         Task<IList<Jugador>> GetJugadoresAsync();
         Task<Jugador> GetJugadorPorIdAsync(int id);
+        Task<IList<PartidoCompleto>> BuscarPartido(string palabrasABuscar, int? faseId, int? torneoId, int? temporadaId);
     }
 }

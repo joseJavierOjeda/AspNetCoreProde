@@ -20,6 +20,7 @@ namespace Negocio.Equipo
         {
             this.repository = repository;
         }
+        
         #endregion
 
         #region Metodos
@@ -32,6 +33,13 @@ namespace Negocio.Equipo
         {
             return repository.GetJugadorPorIdAsync(id);
         }
+
+        public Task<IList<PartidoCompleto>> BuscarPartido(string palabrasABuscar, 
+            int? faseId, int? torneoId, int? temporadaId)
+        {
+            return repository.BuscarPartido(palabrasABuscar, faseId, torneoId, temporadaId);
+        }
+
         #endregion
         
     }

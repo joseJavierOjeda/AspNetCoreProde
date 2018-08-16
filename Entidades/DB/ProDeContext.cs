@@ -16,6 +16,7 @@ namespace Entidades.DB
         public virtual DbSet<Partido> Partido { get; set; }
         public virtual DbSet<Temporada> Temporada { get; set; }
         public virtual DbSet<Torneo> Torneo { get; set; }
+        public virtual DbSet<PartidoCompleto> PartidoCompleto { get; set; }
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {

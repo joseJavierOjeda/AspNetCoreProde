@@ -33,7 +33,6 @@ namespace Prode
 
             services.AddTransient<IJugadorRepository, JugadorRepository>();
 
-
             services.AddMvc();
         }
 
