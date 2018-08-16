@@ -6,6 +6,7 @@ namespace Entidades.DB
 {
     public partial class ProdeContext : DbContext
     {
+        public virtual DbSet<Apuesta> Apuesta { get; set; }
         public virtual DbSet<Equipo> Equipo { get; set; }
         public virtual DbSet<EquipoInfo> EquipoInfo { get; set; }
         public virtual DbSet<EquipoJugador> EquipoJugador { get; set; }
@@ -18,25 +19,38 @@ namespace Entidades.DB
         public virtual DbSet<Torneo> Torneo { get; set; }
         public virtual DbSet<PartidoCompleto> PartidoCompleto { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer(@"Server=.;Database=ProDe;Trusted_Connection=True;");
-//            }
-//        }
+        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //        {
+        //            if (!optionsBuilder.IsConfigured)
+        //            {
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+        //                optionsBuilder.UseSqlServer(@"Server=.;Database=Prode;Trusted_Connection=True;");
+        //            }
+        //        }
 
-            public ProdeContext()
+        public ProdeContext()
         {
 
         }
-            public ProdeContext(DbContextOptions<ProdeContext> options)
-            : base(options)
-        { }
+
+        public ProdeContext(DbContextOptions<ProdeContext> options)
+       : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Apuesta>(entity =>
+            {
+                entity.ToTable("Apuesta", "apuesta");
+
+                entity.HasOne(d => d.Partido)
+                    .WithMany(p => p.Apuesta)
+                    .HasForeignKey(d => d.PartidoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Apuesta_Partido");
+            });
+
             modelBuilder.Entity<Equipo>(entity =>
             {
                 entity.ToTable("Equipo", "equipo");

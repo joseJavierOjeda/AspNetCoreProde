@@ -7,6 +7,7 @@ namespace Entidades.DB
     {
         public Partido()
         {
+            Apuesta = new HashSet<Apuesta>();
             Evento = new HashSet<Evento>();
         }
 
@@ -20,6 +21,7 @@ namespace Entidades.DB
         public Equipo EquipoIdLocalNavigation { get; set; }
         public Equipo EquipoIdVisitanteNavigation { get; set; }
         public Fase Fase { get; set; }
+        public ICollection<Apuesta> Apuesta { get; set; }
         public ICollection<Evento> Evento { get; set; }
     }
 }
