@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Entidades.DB.Jugador>
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
@@ -13,30 +13,31 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Apellido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.JugadorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.JugadorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.JugadorId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.JugadorId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.JugadorId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.JugadorId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

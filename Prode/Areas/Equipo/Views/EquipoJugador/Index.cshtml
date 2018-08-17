@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Entidades.DB.EquipoJugador>
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
@@ -8,17 +8,17 @@
 <h2>Index</h2>
 
 <p>
-    <a href="/equipo/equipojugador/create">Create New</a>
+    <a asp-action="create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaVigenciaDesde)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaVigenciaHasta)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaVigenciaDesde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaVigenciaHasta)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Equipo)
             </th>
@@ -29,26 +29,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaVigenciaDesde)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaVigenciaHasta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Equipo.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Jugador.Apellido)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EquipoJugadorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EquipoJugadorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EquipoJugadorId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaVigenciaDesde)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaVigenciaHasta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipo.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jugador.Apellido)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EquipoJugadorId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EquipoJugadorId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EquipoJugadorId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

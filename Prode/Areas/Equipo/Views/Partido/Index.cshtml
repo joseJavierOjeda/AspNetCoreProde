@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Entidades.DB.PartidoCompleto>
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -13,90 +14,91 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fecha)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Local)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Visitante)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fase)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Torneo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Temporada)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.GolesLocal)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.GolesVisitante)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TarjetaAmarillaLocal)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TarjetaAmarillaVisitante)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TarjetaRojaLocal)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TarjetaRojaVisitante)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Local)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Visitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Torneo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Temporada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GolesLocal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GolesVisitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TarjetaAmarillaLocal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TarjetaAmarillaVisitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TarjetaRojaLocal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TarjetaRojaVisitante)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Local)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Visitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fase)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Torneo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Temporada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GolesLocal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GolesVisitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TarjetaAmarillaLocal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TarjetaAmarillaVisitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TarjetaRojaLocal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TarjetaRojaVisitante)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PartidoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PartidoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PartidoId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Local)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Visitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Torneo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Temporada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GolesLocal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GolesVisitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarjetaAmarillaLocal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarjetaAmarillaVisitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarjetaRojaLocal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarjetaRojaVisitante)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PartidoId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PartidoId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PartidoId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
