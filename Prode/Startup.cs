@@ -27,7 +27,10 @@ namespace Prode
         {
 
             var connection = @"Server=.;Database=Prode;Trusted_Connection=True;";
+
             services.AddDbContext<ProdeContext>(options => options.UseSqlServer(connection));
+            services.AddResponseCaching();
+            services.AddMemoryCache();
 
             AgregarServicios(services);
             
@@ -58,6 +61,8 @@ namespace Prode
                 );
             });
 
+            app.UseResponseCaching();
+
         }
 
         public void AgregarServicios(IServiceCollection services)
@@ -69,6 +74,10 @@ namespace Prode
             services.AddTransient<IPartidoNegocio, PartidoNegocio>();
 
             services.AddTransient<IPartidoRepository, PartidoRepository>();
+
+            services.AddTransient<IEquipoNegocio, EquipoNegocio>();
+
+            services.AddTransient<IEquipoRepository, EquipoRepository>();
         }
 
     }

@@ -6,31 +6,48 @@ using Entidades.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Negocio.Interface.Equipo;
 using Prode.Models;
 
 namespace Prode.Areas.Equipo.Controllers
 {
     [Area("Equipo")]
+    [ResponseCache(Duration =60)]
     public class PartidoController : Controller
     {
         #region Atributos
         private readonly IPartidoNegocio partidoNegocio;
         private readonly ProdeContext _context;
+        private readonly IMemoryCache memoryCache;
         #endregion
 
         #region Constructor
         public PartidoController(IPartidoNegocio partidoNegocio,
-            ProdeContext context)
+            ProdeContext context,
+            IMemoryCache memoryCache)
         {
             this.partidoNegocio = partidoNegocio;
             _context = context;
+            this.memoryCache = memoryCache;
         }
         #endregion
         
         // GET: Equipo/Partido
         public async Task<IActionResult> Index()
         {
+            var torneo = memoryCache.GetOrCreate("TorneoSelecter", e => {
+
+                Torneo torneoDefault = new Torneo {
+                    TorneoId = 1,
+                    Descripcion = "Libertadores"
+                };
+
+                return torneoDefault;
+            });
+
+            ViewBag.Torneo = torneo;
+
             return View(await partidoNegocio.BuscarPartido(null,null,null,null));
         }
 

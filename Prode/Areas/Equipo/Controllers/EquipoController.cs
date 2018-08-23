@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entidades.DB;
+using Negocio.Interface.Equipo;
 
 namespace Prode.Areas.Equipo.Controllers
 {
@@ -13,10 +14,13 @@ namespace Prode.Areas.Equipo.Controllers
     public class EquipoController : Controller
     {
         private readonly ProdeContext _context;
+        private readonly IEquipoNegocio equipoNegocio;
 
-        public EquipoController(ProdeContext context)
+        public EquipoController(ProdeContext context,
+            IEquipoNegocio equipoNegocio)
         {
             _context = context;
+            this.equipoNegocio = equipoNegocio;
         }
 
         // GET: Equipo/Equipo
@@ -33,8 +37,8 @@ namespace Prode.Areas.Equipo.Controllers
                 return NotFound();
             }
 
-            var equipo = await _context.Equipo.Include(x => x.EquipoInfo)
-                .SingleOrDefaultAsync(m => m.EquipoId == id);
+            var equipo = await equipoNegocio.GetEquipoPorId(id.Value);
+
             if (equipo == null)
             {
                 return NotFound();
